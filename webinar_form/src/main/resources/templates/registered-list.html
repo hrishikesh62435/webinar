@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registerd List</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<title>Registerd List</title>
+<link rel="icon" th:href="@{assets/images/logo/pmrda-logo.png}"
+	type="image/x-icon">
+<meta name="description" content="User login page" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+<!-- bootstrap & fontawesome -->
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/assets/font-awesome/4.5.0/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}" />
+<link rel="stylesheet" th:href="@{/assets/css/jquery-ui.custom.min.css}" />
+<!-- text fonts -->
+<link rel="stylesheet" th:href="@{/assets/css/fonts.googleapis.com.css}" />
+
+<!-- ace styles -->
+<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}" />
+
+<!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.min.css" />
+		<![endif]-->
+<link rel="stylesheet" th:href="@{/assets/css/ace-rtl.min.css}" />
+
+<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+<!--[if lte IE 8]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+<body>
+	<div class="main-content">
+		<div class="main-content-inner">
+			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li><i class="ace-icon fa fa-home home-icon"></i> <a th:href="@{/}">Home</a>
+					</li>
+					
+				</ul>
+				<!-- /.breadcrumb -->
+			</div>
+			<div class="page-content">
+
+				<div class="page-header">
+
+					<div class="form-group row">
+
+						<form role="form" class="form-horizontal"
+							th:action="@{/registeredList}" method="get">
+							<div class="col-sm-3">
+								<h1 class="text-dark">Registration List</h1>
+							</div>
+
+
+							<div class="col-sm-2">
+								<select class="form-control" id="status" name="status">
+									
+									<option value="0" th:selected="${status == 0}">All
+										List</option>
+									<option value="1" th:selected="${status == 1}">Certificate
+										Status</option>
+									<option value="2" th:selected="${status == 2}">E-book
+										Status</option>
+									<option value="3" th:selected="${status == 3}">Source
+										Code Status</option>
+									<option value="4" th:selected="${status == 4}">Enroll
+										Status</option>
+
+								</select>
+							</div>
+
+							<div class="col-sm-3">
+								<button type="submit" id="btnSubmit"
+									class="btn btn-primary  col-md-offset-2">Apply</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- /.page-header -->
+
+
+
+				<div class="row" th:if="${status == 0}">
+					<div class="col-xs-12">
+						<div class="widget-body">
+							<div class="widget-main no-padding">
+								<table class="table table-bordered table-striped" id="tbl1">
+									<thead class="thin-border-bottom">
+										<tr>
+											<th>Sr no</th>
+											<th>Student Name</th>
+											<th>Student Mobile no</th>
+											<th>Student City</th>
+											<th>Student College</th>
+											<th>Student Registration Date/time</th>
+											<th>Student Status</th>
+											<th>Certificate Status</th>
+											<th>E-Book Status</th>
+											<th>E-Roll Status</th>
+											<th>Source Code Status</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr th:each="bl,loop:${listRegisterStudent}">
+											<td th:text="${loop.count}"></td>
+											<td th:text="${bl.studentName}"></td>
+											<td th:text="${bl.studentMobileNumber}"></td>
+											<td th:text="${bl.studentCity}"></td>
+											<td th:text="${bl.studentCollegeName}"></td>
+											<td th:text="${bl.registrationDatetime}"></td>
+											<td th:text="${bl.studentStatus}"></td>
+											<td th:text="${bl.certificateStatus}"></td>
+											<td th:text="${bl.eBookStatus}"></td>
+											<td th:text="${bl.enrollStatus}"></td>
+											<td th:text="${bl.sourceCodeStatus}"></td>
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row" th:if="${status == 1}">
+					<div class="col-xs-12">
+						<div class="widget-body">
+							<div class="widget-main no-padding">
+								<table class="table table-bordered table-striped" id="tbl2">
+									<thead class="thin-border-bottom">
+										<tr>
+											<th>Sr no</th>
+											<th>Student Name</th>
+											<th>Student Mobile no</th>
+											<th>Student City</th>
+											<th>Student College</th>
+											<th>Student Registration Date/time</th>
+											<th>Student Status</th>
+											<th>Certificate Status</th>
+
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr th:each="bl,loop:${activeCertificateStatus}">
+											<td th:text="${loop.count}"></td>
+											<td th:text="${bl.studentName}"></td>
+											<td th:text="${bl.studentMobileNumber}"></td>
+											<td th:text="${bl.studentCity}"></td>
+											<td th:text="${bl.studentCollegeName}"></td>
+											<td th:text="${bl.registrationDatetime}"></td>
+											<td th:text="${bl.studentStatus}"></td>
+											<td th:text="${bl.certificateStatus}"></td>
+
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>	
+
+					<div class="row" th:if="${status == 2}">
+						<div class="col-xs-12">
+							<div class="widget-body">
+								<div class="widget-main no-padding">
+									<table class="table table-bordered table-striped" id="tbl3">
+										<thead class="thin-border-bottom">
+											<tr>
+												<th>Sr no</th>
+												<th>Student Name</th>
+												<th>Student Mobile no</th>
+												<th>Student City</th>
+												<th>Student College</th>
+												<th>Student Registration Date/time</th>
+												<th>Student Status</th>
+												<th>E-Book Status</th>
+
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr th:each="bl,loop:${activeEBookStatus}">
+												<td th:text="${loop.count}"></td>
+												<td th:text="${bl.studentName}"></td>
+												<td th:text="${bl.studentMobileNumber}"></td>
+												<td th:text="${bl.studentCity}"></td>
+												<td th:text="${bl.studentCollegeName}"></td>
+												<td th:text="${bl.registrationDatetime}"></td>
+												<td th:text="${bl.studentStatus}"></td>
+												<td th:text="${bl.eBookStatus}"></td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" th:if="${status == 3}">
+						<div class="col-xs-12">
+							<div class="widget-body">
+								<div class="widget-main no-padding">
+									<table class="table table-bordered table-striped" id="tbl4">
+										<thead class="thin-border-bottom">
+											<tr>
+												<th>Sr no</th>
+												<th>Student Name</th>
+												<th>Student Mobile no</th>
+												<th>Student City</th>
+												<th>Student College</th>
+												<th>Student Registration Date/time</th>
+												<th>Student Status</th>
+												<th>Source Code Status</th>
+
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr th:each="bl,loop:${activeSourceCodeStatus}">
+												<td th:text="${loop.count}"></td>
+												<td th:text="${bl.studentName}"></td>
+												<td th:text="${bl.studentMobileNumber}"></td>
+												<td th:text="${bl.studentCity}"></td>
+												<td th:text="${bl.studentCollegeName}"></td>
+												<td th:text="${bl.registrationDatetime}"></td>
+												<td th:text="${bl.studentStatus}"></td>
+												<td th:text="${bl.sourceCodeStatus}"></td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" th:if="${status == 4}">
+						<div class="col-xs-12">
+							<div class="widget-body">
+								<div class="widget-main no-padding">
+									<table class="table table-bordered table-striped" id="tbl5">
+										<thead class="thin-border-bottom">
+											<tr>
+												<th>Sr no</th>
+												<th>Student Name</th>
+												<th>Student Mobile no</th>
+												<th>Student City</th>
+												<th>Student College</th>
+												<th>Student Registration Date/time</th>
+												<th>Student Status</th>
+												<th>E-Roll Status</th>
+
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr th:each="bl,loop:${activeEnRollStatus}">
+												<td th:text="${loop.count}"></td>
+												<td th:text="${bl.studentName}"></td>
+												<td th:text="${bl.studentMobileNumber}"></td>
+												<td th:text="${bl.studentCity}"></td>
+												<td th:text="${bl.studentCollegeName}"></td>
+												<td th:text="${bl.registrationDatetime}"></td>
+												<td th:text="${bl.studentStatus}"></td>
+												<td th:text="${bl.enrollStatus}"></td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+
+
+
+	<!-- basic scripts -->
+
+			<!--[if !IE]> -->
+			<script th:src="@{/assets/js/jquery-2.1.4.min.js}"></script>
+			<script th:src="@{/assets/js/jquery.gritter.min.js}"></script>
+			<script th:src="@{/assets/js/jquery.maskedinput.min.js}"></script>
+			<script th:src="@{/assets/js/jquery.validate.min.js}"></script>
+			<script th:src="@{/assets/js/jquery-additional-methods.min.js}"></script>
+			<!-- <![endif]-->
+
+
+			<!-- page specific plugin scripts -->
+			<script th:src="@{/assets/js/jquery.dataTables.min.js}"></script>
+			<script th:src="@{/assets/js/jquery.dataTables.bootstrap.min.js}"></script>
+			<script th:src="@{/assets/js/dataTables.buttons.min.js}"></script>
+			<script th:src="@{/assets/js/buttons.flash.min.js}"></script>
+			<script th:src="@{/assets/js/buttons.html5.min.js}"></script>
+			<script th:src="@{/assets/js/buttons.print.min.j}"></script>
+			<script th:src="@{/assets/js/buttons.colVis.min.js}"></script>
+			<script th:src="@{/assets/js/dataTables.select.min.js}"></script>
+
+			<!-- ace scripts -->
+			<script th:src="@{assets/js/ace-elements.min.js}"></script>
+			<script th:src="@{assets/js/ace.min.js}"></script>
+
+
+			<!--[if IE]>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+			<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+
+			<!-- inline scripts related to this page -->
+			<script type="text/javascript">
+			jQuery(function($) {
+			 $(document).on('click', '.toolbar a[data-target]', function(e) {
+				e.preventDefault();
+				var target = $(this).data('target');
+				$('.widget-box.visible').removeClass('visible');//hide others
+				$(target).addClass('visible');//show target
+			 });
+			});
+			
+			//you don't need this, just used for changing background
+			jQuery(function($) {
+				
+						
+				var myTable =$('#tbl1')
+					
+					
+				.DataTable({
+						bAutoWidth : false,
+						"aoColumns" : [ {
+							"bSortable" : false
+						}, null, null, null, null, null, {
+							"bSortable" : false
+						} ],
+						"aaSorting" : [],
+						select : {
+							style : 'multi'
+						}
+					});
+
+				});
+			</script></body>
+</html>
